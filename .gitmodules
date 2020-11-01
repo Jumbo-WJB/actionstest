@@ -1,0 +1,3 @@
+[submodule "juicy-potato"]
+	path = juicy-potato
+	url = https://github.com/ohpe/juicy-potato
