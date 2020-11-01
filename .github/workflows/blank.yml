@@ -1,0 +1,21 @@
+name: build juicy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+      - name: MSBuild
+        working-directory: juicy-potato/JuicyPotato/JuicyPotato/
+        run: msbuild JuicyPotato.vcxproj
+        
+        
