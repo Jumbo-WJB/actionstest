@@ -15,7 +15,7 @@ jobs:
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
       - name: MSBuild
-        working-directory: $Env:GITHUB_WORKSPACE/juicy-potato/JuicyPotato/JuicyPotato
+        working-directory: $Env:GITHUB_WORKSPACE\juicy-potato\JuicyPotato\JuicyPotato
         run: msbuild JuicyPotato.vcxproj
         
         
