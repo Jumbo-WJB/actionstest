@@ -24,9 +24,12 @@ jobs:
           Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
           Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
       
-      - name: Setup MSBuild.exe
-        uses: warrenbuckley/Setup-MSBuild@v1
-      - name: MSBuild
-        working-directory: .\juicy-potato\JuicyPotato\JuicyPotato\
-        run: msbuild JuicyPotato.vcxproj
+      - name: Setup Nuget.exe
+        uses: warrenbuckley/Setup-Nuget@v1
+      - name: Nuget Restore
+        run: nuget restore $Env:GITHUB_WORKSPACE\juicy-potato\JuicyPotato\JuicyPotato.sln
+      - name: Build JuicyPotato
+        run: |
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\juicy-potato\JuicyPotato\JuicyPotato.sln
 
